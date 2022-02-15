@@ -26,6 +26,8 @@ export class AuthService {
 
     return {
       token: this.authSessionService.createToken(user),
+      name: user.name,
+      id: user.id,
     };
   }
 }

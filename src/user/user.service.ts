@@ -13,6 +13,10 @@ export class UserService {
     private userRepository: Repository<UserEntity>,
   ) {}
 
+  findAll() {
+    return this.userRepository.find();
+  }
+
   findUserById(id: number) {
     return this.userRepository.findOne(id);
   }

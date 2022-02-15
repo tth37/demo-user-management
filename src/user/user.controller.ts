@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Post, Query } from "@nestjs/common";
+import {
+  Body,
+  Controller,
+  Get,
+  NotFoundException,
+  Post,
+  Query,
+} from "@nestjs/common";
+
 import { CurrentUser } from "src/common/decorator/current-user.decorator";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { FindUserParamDto } from "./dto/find-user-param.dto";
@@ -15,11 +23,17 @@ export class UserController {
   }
 
   @Get()
-  findUser(
-    @Query() findUserParamDto: FindUserParamDto,
+  async findUser(
+    @Query() queryParam: FindUserParamDto,
     @CurrentUser() currentUser: UserEntity,
   ) {
     console.log(currentUser);
-    console.log(findUserParamDto);
+    if (queryParam.id) {
+      const user = await this.userService.findUserById(queryParam.id);
+      if (!user)
+        throw new NotFoundException(`UserId ${queryParam.id} not found`);
+      return user;
+    }
+    return this.userService.findAll();
   }
 }
