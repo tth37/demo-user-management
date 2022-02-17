@@ -10,6 +10,7 @@ import { AppService } from "./app.service";
 import { UserModule } from "./user/user.module";
 import { AuthModule } from "./auth/auth.module";
 import { AuthMiddleware } from "./auth/auth.middleware";
+import { CacheModule } from './cache/cache.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { AuthMiddleware } from "./auth/auth.middleware";
     }),
     UserModule,
     AuthModule,
+    CacheModule,
   ],
   controllers: [AppController],
   providers: [AppService],
