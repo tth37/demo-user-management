@@ -43,9 +43,9 @@ export class AuthSessionService {
   //   }
   // }
 
-  createSession(user: UserEntity) {
+  async createSession(user: UserEntity) {
     const id = uuidv4();
-    this.cacheService.save<Session>(
+    await this.cacheService.save<Session>(
       "auth-session-" + id,
       { id, user, date: new Date() },
       this.SESSION_TTL,

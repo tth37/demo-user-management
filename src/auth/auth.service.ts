@@ -25,7 +25,7 @@ export class AuthService {
     if (!(await bcrypt.compare(loginUserDto.password, user.password)))
       throw new ForbiddenException(`Password Incorrect`);
 
-    const sessionId = this.authSessionService.createSession(user);
+    const sessionId = await this.authSessionService.createSession(user);
 
     return {
       ...loginUserDto,

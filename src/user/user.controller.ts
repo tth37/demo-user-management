@@ -5,6 +5,7 @@ import {
   NotFoundException,
   Post,
   Query,
+  UnauthorizedException,
 } from "@nestjs/common";
 
 import { CurrentUser } from "src/common/decorator/current-user.decorator";
@@ -30,7 +31,7 @@ export class UserController {
     if (currentUser) {
       return currentUser;
     } else {
-      return "Please login first!!";
+      throw new UnauthorizedException();
     }
 
     //  console.log(currentUser);

@@ -6,7 +6,7 @@ export class CacheService {
   constructor(@Inject(CACHE_MANAGER) private cacheManager: Cache) {}
 
   save<T>(key: string, payload: T, ttl: number) {
-    this.cacheManager.set(key, payload, { ttl });
+    return this.cacheManager.set(key, payload, { ttl });
   }
 
   get<T>(key: string): Promise<T> {
