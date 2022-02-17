@@ -71,3 +71,18 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+## Nginx Configuration
+
+```
+server {
+  server_name test.tth37.xyz;
+  root /www/demo-user-management-ui/dist;
+  location / {
+    try_files $uri $uri/ /index.html;
+  }
+  location /api/ {
+    proxy_pass http://localhost:2222/;
+  }
+}
+```

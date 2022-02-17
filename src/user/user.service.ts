@@ -1,7 +1,8 @@
-import { Injectable } from "@nestjs/common";
+import { CACHE_MANAGER, Inject, Injectable } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UserEntity } from "./entity/user.entity";
+import { Cache } from "cache-manager";
 
 import * as bcrypt from "bcrypt";
 import { InjectRepository } from "@nestjs/typeorm";
@@ -11,6 +12,7 @@ export class UserService {
   constructor(
     @InjectRepository(UserEntity)
     private userRepository: Repository<UserEntity>,
+    @Inject(CACHE_MANAGER) private cacheManager: Cache,
   ) {}
 
   findAll() {
