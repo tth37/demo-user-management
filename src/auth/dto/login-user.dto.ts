@@ -7,3 +7,14 @@ export class LoginUserDto {
   @IsString()
   password: string;
 }
+
+export class LoginUserDtoWithToken {
+  @IsString()
+  name: string;
+
+  @IsString()
+  password: string;
+
+  @IsString()
+  token: string;
+}

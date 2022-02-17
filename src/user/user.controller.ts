@@ -27,7 +27,13 @@ export class UserController {
     @Query() queryParam: FindUserParamDto,
     @CurrentUser() currentUser: UserEntity,
   ) {
-    console.log(currentUser);
+    if (currentUser) {
+      return currentUser;
+    } else {
+      return "Please login first!!";
+    }
+
+    //  console.log(currentUser);
     if (queryParam.id) {
       const user = await this.userService.findUserById(queryParam.id);
       if (!user)

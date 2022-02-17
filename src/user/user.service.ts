@@ -6,14 +6,19 @@ import { Cache } from "cache-manager";
 
 import * as bcrypt from "bcrypt";
 import { InjectRepository } from "@nestjs/typeorm";
+import { CacheService } from "src/cache/cache.service";
+import { ConfigService } from "src/config/config.service";
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(UserEntity)
     private userRepository: Repository<UserEntity>,
-    @Inject(CACHE_MANAGER) private cacheManager: Cache,
+    private readonly cacheService: CacheService,
+    private readonly configService: ConfigService,
   ) {}
+
+  DEFAULT_TTL = this.configService.config.cache.DEFAULT_TTL;
 
   findAll() {
     return this.userRepository.find();
