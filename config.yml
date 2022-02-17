@@ -2,7 +2,7 @@ auth:
   # JSON Web Token secret
   JWT_SECRET: "kfvbifuilghjkadhgkasadksufjkasdh"
   # Expires in (s)
-  SESSION_TTL: 100
+  SESSION_TTL: 100000
 
 cache:
   DEFAULT_TTL: 333

@@ -17,20 +17,6 @@ export class AuthService {
     private readonly authSessionService: AuthSessionService,
   ) {}
 
-  // async loginUser(loginUserDto: LoginUserDto) {
-  //   const user = await this.userService.findUserByName(loginUserDto.name);
-  //   if (!user)
-  //     throw new NotFoundException(`Username ${loginUserDto.name} not found`);
-
-  //   if (!(await bcrypt.compare(loginUserDto.password, user.password)))
-  //     throw new ForbiddenException(`Password Incorrect`);
-
-  //   return {
-  //     token: this.authSessionService.createToken(user),
-  //     name: user.name,
-  //     id: user.id,
-  //   };
-  // }
   async loginUser(loginUserDto: LoginUserDto): Promise<LoginUserDtoWithToken> {
     const user = await this.userService.findUserByName(loginUserDto.name);
     if (!user)
